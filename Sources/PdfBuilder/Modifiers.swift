@@ -1,6 +1,6 @@
 import UIKit
 
-extension DocumentItem {
+public extension DocumentItem {
 
     func background(_ color: UIColor) -> DocumentItem {
         Pdf.Background(color: color, self)

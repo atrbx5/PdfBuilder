@@ -3,19 +3,19 @@ import AVFoundation
 
 extension Pdf {
 
-    class Image: DocumentItemAutoBreak {
+    open class Image: DocumentItemAutoBreak {
         let image: UIImage?
         let fixedSize: CGSize?
         let circle: Bool
         
         // TODO: create shapes if need more then circle
-        init(_ image: UIImage?, size: CGSize? = nil, circle: Bool = false) {
+        public init(_ image: UIImage?, size: CGSize? = nil, circle: Bool = false) {
             self.image = image
             self.fixedSize = size
             self.circle = circle
         }
         
-        override func draw(rect: inout CGRect) {
+        open override func draw(rect: inout CGRect) {
             var size = fixedSize ?? .zero
             
             if let image = image, fixedSize == nil {

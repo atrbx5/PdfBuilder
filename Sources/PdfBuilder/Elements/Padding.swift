@@ -7,7 +7,7 @@ extension Pdf {
         let size: CGFloat
         let element: DocumentItem
 
-        init(size: CGFloat, _ element: DocumentItem) {
+        public init(size: CGFloat, _ element: DocumentItem) {
             self.size = size
             self.element = element
         }

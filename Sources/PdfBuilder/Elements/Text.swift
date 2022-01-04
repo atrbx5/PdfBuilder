@@ -32,10 +32,10 @@ extension Pdf {
             rect.size.height -= height
         }
         
-        open func padding__(_ value: CGFloat) -> Self {
-            _padding = value
-            return self
-        }
+//        open func padding__(_ value: CGFloat) -> Self {
+//            _padding = value
+//            return self
+//        }
     }
 }
 

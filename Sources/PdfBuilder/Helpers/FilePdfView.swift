@@ -2,10 +2,14 @@ import UIKit
 import SwiftUI
 
 
-struct FilePdfView: View {
+public struct FilePdfView: View {
     let pdfData: Data
     
-    var body: some View {
+    public init(pdfData: Data) {
+        self.pdfData = pdfData
+    }
+    
+    public var body: some View {
         WebView(data: pdfData, mimeType: "application/pdf")
     }
 }

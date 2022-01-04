@@ -7,7 +7,7 @@ extension Pdf {
         let color: UIColor
         let element: DocumentItem
 
-        init(color: UIColor, _ element: DocumentItem) {
+        public init(color: UIColor, _ element: DocumentItem) {
             self.color = color
             self.element = element
         }
