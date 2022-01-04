@@ -28,10 +28,10 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
 <table>
 <tr>
      <td width="50%">Code</td>
-     <td>Pdf preview</td>
+     <td width="50%">Pdf preview</td>
 </tr>
 <tr>
-<td valign="top">
+<td valign="top" width="50%">
 
     let builder = Pdf.Builder()
 
@@ -111,6 +111,6 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
     let data = builder.generateNewPdf() as Data
 
 </td>
-<td valign="top"><img src="./images/Screenshot_2022-01-04_002.png"></td>
+<td valign="top" width="50%"><img src="./images/Screenshot_2022-01-04_002.png"></td>
 </tr>
 </table>
