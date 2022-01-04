@@ -19,7 +19,7 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
 
 ## StringAttributes
  Alias for NSAttributedString.Key dictionary allows union multiple dictionaries in a shorter way
- ```
+ ```swift
  StringAttributes.caption().foregroundColor(.red)
  ```
 
@@ -32,7 +32,8 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
 </tr>
 <tr>
 <td valign="top" width="50%">
-
+    
+```swift
     let builder = Pdf.Builder()
 
     builder.items = [
@@ -113,7 +114,7 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
     ]
 
     let data = builder.generateNewPdf() as Data
-
+```
 </td>
 <td valign="top" width="50%"><img src="./images/Screenshot_2022-01-04_002.png"></td>
 </tr>
