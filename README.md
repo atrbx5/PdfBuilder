@@ -3,19 +3,19 @@
 PdfBuilder is a swift library made to make creation of the Pdf file from code simpler. It's inspired by SwiftUI and give similar declarative interface to design page layout.
 
 ## Layout components
-    -Background
-    -ClipShape
-    -Divider
-    -Grid
-    -Image
-    -Padding
-    -PageBackground
-    -PageBreak
-    -PageCounter
-    -PageHeader
-    -Spacer
-    -Text
-    -VStack
+    - Background
+    - ClipShape
+    - Divider
+    - Grid
+    - Image
+    - Padding
+    - PageBackground
+    - PageBreak
+    - PageCounter
+    - PageHeader
+    - Spacer
+    - Text
+    - VStack
 
 ## StringAttributes
  Alias for NSAttributedString.Key dictionary allows union multiple dictionaries in a shorter way
