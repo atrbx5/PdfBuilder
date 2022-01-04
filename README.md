@@ -84,27 +84,31 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
 
         Pdf.Spacer(20),
 
-        Pdf.Grid(columns: [.fixed(v: 25), .flexible, .fixed(v: 25), .flexible], items: [
-
-            Pdf.Text("* 1"),
-            Pdf.Text(lorem)
-                .padding(16)
-                .background(.orange),
-
-            Pdf.Text("* 2"),
-            Pdf.Padding(
-                size: 16, Pdf.Background(
-                    color: .green, Pdf.Text(lorem2))),
-
-            Pdf.Text("* 3"),
-            Pdf.Image(UIImage(systemName: "person")),
-            Pdf.Text("* 4"),
-            Pdf.VStack([
-                Pdf.Text("Row 1"),
-                Pdf.Text("Row 2"),
-                Pdf.Text("Row 3"),
-                Pdf.Text("Row 4")
-            ]).padding(16)
+        Pdf.Grid(
+            columns: [
+                .fixed(v: 25), .flexible,
+                .fixed(v: 25), .flexible],
+            items: [
+                
+                Pdf.Text("* 1"),
+                Pdf.Text(lorem)
+                    .padding(16)
+                    .background(.orange),
+                
+                Pdf.Text("* 2"),
+                Pdf.Padding(
+                    size: 16, Pdf.Background(
+                        color: .green, Pdf.Text(lorem2))),
+                
+                Pdf.Text("* 3"),
+                Pdf.Image(UIImage(systemName: "person")),
+                Pdf.Text("* 4"),
+                Pdf.VStack([
+                    Pdf.Text("Row 1"),
+                    Pdf.Text("Row 2"),
+                    Pdf.Text("Row 3"),
+                    Pdf.Text("Row 4")
+                ]).padding(16)
         ])
     ]
 
