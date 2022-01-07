@@ -1,10 +1,10 @@
 import SwiftUI
 
+let lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+let lorem2 = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 struct Pdf_Previews: PreviewProvider {
-
-    static let lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-    static let lorem2 = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
     static var previews: some View {
 
@@ -68,15 +68,23 @@ struct Pdf_Previews: PreviewProvider {
                 Pdf.Text("* 1"),
                 Pdf.Text(lorem)
                     .padding(16)
-                    .background(.orange),
+                    .background(.orange)
+                    .clipShape(.circle),
                 
                 Pdf.Text("* 2"),
-                Pdf.Padding(
-                    size: 16, Pdf.Background(
-                        color: .green, Pdf.Text(lorem2))),
+                Pdf.Text(lorem2)
+                    .padding(8)
+                    .background(.systemGreen)
+                    .clipShape(.roundedRect(radius: 8))
+                    .padding(16),
                 
                 Pdf.Text("* 3"),
-                Pdf.Image(UIImage(systemName: "person")),
+                Pdf.Image(UIImage(systemName: "person"))
+                    .padding(8)
+                    .background(.systemGreen)
+                    .clipShape(.roundedRect(radius: 8))
+                    .padding(16),
+                
                 Pdf.Text("* 4"),
                 Pdf.VStack([
                     Pdf.Text("Row 1"),
@@ -89,7 +97,6 @@ struct Pdf_Previews: PreviewProvider {
 
     let data = builder.generateNewPdf() as Data
         return FilePdfView(pdfData: data)
-            .previewLayout(.fixed(width: 400, height: 500))
 
     }
 }

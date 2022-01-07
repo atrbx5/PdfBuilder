@@ -23,6 +23,77 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
  StringAttributes.caption().foregroundColor(.red)
  ```
 
+ ## ClipShape sample
+
+<table>
+<tr>
+     <td width="50%">Code</td>
+     <td width="50%">Pdf preview</td>
+</tr>
+<tr>
+<td valign="top" width="50%">
+
+ ```swift
+    let builder = Pdf.Builder()
+
+    let paddingModifier = Pdf.Modifier { item in
+        item
+            .padding(8)
+            .background(.systemGreen)
+            .clipShape(.roundedRect(radius: 8))
+            .padding(4)
+    }
+
+    builder.items = [
+
+        Pdf.Grid(
+            columns: [
+                .fixed(v: 25), .flexible,
+                .fixed(v: 25), .flexible],
+            items: [
+
+                Pdf.Text("* 1"),
+                Pdf.Text(lorem)
+                    .padding(16)
+                    .background(.orange)
+                    .clipShape(.circle),
+
+                Pdf.Text("* 2"),
+                Pdf.Text(lorem2)
+                    .padding(8)
+                    .background(.systemGreen)
+                    .clipShape(.roundedRect(radius: 8))
+                    .padding(16),
+
+                Pdf.Text("* 3"),
+                Pdf.Image(UIImage(systemName: "person"))
+                    .padding(8)
+                    .background(.systemGreen)
+                    .clipShape(.roundedRect(radius: 8))
+                    .padding(16),
+
+                Pdf.Text("* 4"),
+                Pdf.VStack([
+                    Pdf.Text("Row 1")
+                        .modifier(paddingModifier),
+                    Pdf.Text("Row 2")
+                        .modifier(paddingModifier),
+                    Pdf.Text("Row 3")
+                        .modifier(paddingModifier),
+                    Pdf.Text("Row 4")
+                        .modifier(paddingModifier)
+                ]).padding(16)
+            ])
+    ]
+
+    let data = builder.generateNewPdf() as Data
+    return FilePdfView(pdfData: data)
+```
+</td>
+<td valign="top" width="50%"><img src="./images/Screenshot_2022-01-07_003.png"></td>
+</tr>
+</table>
+
  ## Sample
 
 <table>
@@ -32,8 +103,8 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
 </tr>
 <tr>
 <td valign="top" width="50%">
-    
-```swift
+
+ ```swift
     let builder = Pdf.Builder()
 
     builder.items = [
@@ -90,17 +161,17 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
                 .fixed(v: 25), .flexible,
                 .fixed(v: 25), .flexible],
             items: [
-                
+
                 Pdf.Text("* 1"),
                 Pdf.Text(lorem)
                     .padding(16)
                     .background(.orange),
-                
+
                 Pdf.Text("* 2"),
                 Pdf.Padding(
                     size: 16, Pdf.Background(
                         color: .green, Pdf.Text(lorem2))),
-                
+
                 Pdf.Text("* 3"),
                 Pdf.Image(UIImage(systemName: "person")),
                 Pdf.Text("* 4"),
@@ -115,6 +186,7 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
 
     let data = builder.generateNewPdf() as Data
 ```
+
 </td>
 <td valign="top" width="50%"><img src="./images/Screenshot_2022-01-04_002.png"></td>
 </tr>

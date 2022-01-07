@@ -23,7 +23,7 @@ extension Pdf {
 
         func drawTop(rect: inout CGRect) {
 
-            var tempRect = estimateDraw(rect: rect, elements: top)
+            let tempRect = estimateDraw(rect: rect, elements: top)
 
             var fillRect = UIGraphicsGetPDFContextBounds()
             fillRect.origin.y = rect.origin.y

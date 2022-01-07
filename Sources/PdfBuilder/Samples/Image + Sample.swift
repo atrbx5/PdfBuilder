@@ -31,7 +31,5 @@ struct PdfImage_Previews: PreviewProvider {
 
         let data = builder.generateNewPdf() as Data
         return FilePdfView(pdfData: data)
-            .previewLayout(.fixed(width: 400, height: 500))
-
     }
 }
