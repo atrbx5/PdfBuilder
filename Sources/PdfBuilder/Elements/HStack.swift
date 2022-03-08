@@ -1,6 +1,9 @@
+import UIKit
+
 extension Pdf {
     
     open class HStack: Grid {
+        
         public init(_ items: [DocumentItem], separatorColor: UIColor = .clear) {
             super.init(columns: [GridColumnWidth].init(repeating: .flexible, count: items.count), items: items, separatorColor: separatorColor)
         }
