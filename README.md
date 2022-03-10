@@ -16,6 +16,7 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
     - Spacer
     - Text
     - VStack
+    - HStack
 
 ## StringAttributes
  Alias for NSAttributedString.Key dictionary allows union multiple dictionaries in a shorter way
