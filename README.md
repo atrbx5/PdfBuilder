@@ -192,3 +192,14 @@ PdfBuilder is a swift library made to make creation of the Pdf file from code si
 <td valign="top" width="50%"><img src="./images/Screenshot_2022-01-04_002.png"></td>
 </tr>
 </table>
+
+## Installation
+### CocoaPods
+```ruby
+pod 'PdfBuilder'
+```
+
+### Swift Package Manager
+```swift
+https://github.com/atrbx5/PdfBuilder
+```
