@@ -10,10 +10,10 @@ extension Pdf {
 
         public var items = [DocumentItem]()
 
-        public func generateNewPdf(progress: @escaping (Float) -> Void = {_ in }) -> NSMutableData {
+        public func generateNewPdf(pageRect: CGRect = .zero, progress: @escaping (Float) -> Void = {_ in }) -> NSMutableData {
 
             let pdfData = NSMutableData()
-            UIGraphicsBeginPDFContextToData(pdfData, CGRect.zero, nil)
+            UIGraphicsBeginPDFContextToData(pdfData, pageRect, nil)
 
             appendPdf(progress: progress)
 
