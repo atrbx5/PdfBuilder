@@ -29,7 +29,6 @@ extension Pdf {
                 y: rect.minY,
                 width: size.width,
                 height: size.height)
-                .insetBy(dx: 1, dy: 1)
             
             let context = UIGraphicsGetCurrentContext()
             if circle {
