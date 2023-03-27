@@ -3,9 +3,9 @@ import UIKit
 
 extension Pdf {
     
-    public class PageCounter: DocumentItem {
+    open class PageCounter: DocumentItem {
         
-        var pageNumber: Int
+        public internal(set) var pageNumber: Int
         
         public init(pageNumber: Int) {
             self.pageNumber = pageNumber
