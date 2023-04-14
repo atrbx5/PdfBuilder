@@ -24,18 +24,18 @@ extension Pdf {
         open override func draw(rect: inout CGRect) {
             let textRect = rect.insetBy(dx: _padding, dy: _padding)
             let textBounds = text.bounds(withSize: textRect.size)
-  
-            text.draw(in: textRect)
+
+            let options: NSStringDrawingOptions = [
+                .usesLineFragmentOrigin,
+                .truncatesLastVisibleLine
+            ]
+            //text.draw(in: textRect, options: options)
+            text.draw(with: textRect, options: options, context: nil)
             
             let height = textBounds.height + 2 * _padding
             rect.origin.y += height
             rect.size.height -= height
         }
-        
-//        open func padding__(_ value: CGFloat) -> Self {
-//            _padding = value
-//            return self
-//        }
     }
 }
 

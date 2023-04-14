@@ -66,6 +66,8 @@ extension Pdf {
             for item in bottom {
                 item.draw(rect: &bottomRect)
             }
+
+            rect.size.height -= contentHeight
         }
     }
 }

@@ -11,29 +11,49 @@ extension Pdf {
     open class Grid: DocumentItemAutoBreak {
         
         let columns: [GridColumnWidth]
+        let rows: [GridColumnWidth]?
         let items: [DocumentItem]
         let separatorColor: UIColor
         
-        public init(columns: [GridColumnWidth], items: [DocumentItem], separatorColor: UIColor = .separator) {
+        public init(columns: [GridColumnWidth], rows: [GridColumnWidth]? = nil, items: [DocumentItem], separatorColor: UIColor = .separator) {
             self.columns = columns
+            self.rows = rows
             self.items = items
             self.separatorColor = separatorColor
         }
         
         open override func draw(rect: inout CGRect) {
+            let context = UIGraphicsGetCurrentContext()
                         
             let columnWidth = calculateColumnsWidth(rect: rect)
             let rowsCount = Int(ceil( Float(items.count) / Float(columns.count)))
             
             var rowOffsetY: CGFloat = 0
+
+            var maxHeight = rect.height
             
             for i in 0..<rowsCount {
                 let row = items[(i * columns.count)..<min(items.count, (i * columns.count + columns.count))]
                 
-                let rowHeight = height(
+                var rowHeight: CGFloat = height(
                     row: [DocumentItem](row),
                     columnWidth: columnWidth,
-                    maxHeight: rect.height)
+                    maxHeight: maxHeight)
+
+                maxHeight -= rowHeight
+
+                if let rows, i < rows.count {
+                    switch rows[i] {
+                    case .fixed(let rHeight):
+                        rowHeight = rHeight
+                    case .relative(let rHeight):
+                        rowHeight = rect.height * rHeight
+                    case .flexible:
+                        // TODO: calculate excluding fixed and relative heights
+                        rowHeight = rect.height / CGFloat(rowsCount)
+                        break
+                    }
+                }
                 
                 var cellOffset: CGFloat = 0
                 
@@ -46,16 +66,20 @@ extension Pdf {
                         height: rowHeight)
                     
                     cellOffset += columnWidth[index]
+
+                    context?.addPath(UIBezierPath(rect: cellRect).cgPath)
                     
-                    let context = UIGraphicsGetCurrentContext()                    
                     context?.setFillColor(cell.backgroundColorFill.cgColor)
                     context?.setStrokeColor(separatorColor.cgColor)
                     context?.fill(cellRect)
                     context?.stroke(cellRect)
-                    
+
+
                     cell.draw(rect: &cellRect)
+                    context?.resetClip()
                 }
-                
+
+
                 rowOffsetY += rowHeight
             }
             
