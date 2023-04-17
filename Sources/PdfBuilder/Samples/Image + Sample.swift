@@ -6,7 +6,7 @@ struct PdfImage_Previews: PreviewProvider {
 
         let builder = Pdf.Builder()
 
-        let counter = Pdf.PageCounter(pageNumber: 0)
+        let counter = Pdf.TextPageCounter(pageNumber: 0)
 
         builder.pageCounter = counter
 

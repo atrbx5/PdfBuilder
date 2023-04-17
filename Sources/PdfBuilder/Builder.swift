@@ -6,7 +6,7 @@ extension Pdf {
         public var pageMargin = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
 
         private var pageHeader: Pdf.PageHeader?
-        public var pageCounter: Pdf.PageCounter?
+        public var pageCounter: PdfPageCounterProtocol?
 
         public var items = [DocumentItem]()
 

@@ -1,30 +1,41 @@
 import UIKit
 
+public protocol PdfPageCounterProtocol: AnyObject {
+    var pageNumber: Int { get set }
+}
 
 extension Pdf {
-    
-    open class PageCounter: DocumentItem {
-        
-        public internal(set) var pageNumber: Int
-        
-        public init(pageNumber: Int) {
+
+    open class TextPageCounter: DocumentItemAutoBreak, PdfPageCounterProtocol {
+        public var pageNumber: Int
+        public var format: String
+        public var attributes: StringAttributes
+
+        let _padding: CGFloat = 2
+
+        public init(pageNumber: Int, format: String = "%i", attributes: StringAttributes = StringAttributes()) {
             self.pageNumber = pageNumber
+            self.format = format
+            self.attributes = attributes
         }
-        
-        public override func draw(rect: inout CGRect) {
+
+        open override func draw(rect: inout CGRect) {
+            let textRect = rect.insetBy(dx: _padding, dy: _padding)
             let text = NSAttributedString(
-                string: "Page \(pageNumber)",
-                attributes: StringAttributes.caption().alignment(.center))
-            
-            let bounds = text.bounds(withSize: rect.size)
-            
-            text.draw(in: CGRect(
-                        x: rect.minX,
-                        y: rect.maxY - bounds.size.height,
-                        width: rect.width,
-                        height: bounds.size.height))
-            
-            rect.size.height -= bounds.size.height + 5
+                string: String(format: format, pageNumber),
+                attributes: attributes)
+            let textBounds = text.bounds(withSize: textRect.size)
+
+            let options: NSStringDrawingOptions = [
+                .usesLineFragmentOrigin,
+                .truncatesLastVisibleLine
+            ]
+            //text.draw(in: textRect, options: options)
+            text.draw(with: textRect, options: options, context: nil)
+
+            let height = textBounds.height + 2 * _padding
+            rect.origin.y += height
+            rect.size.height -= height
         }
     }
 }
